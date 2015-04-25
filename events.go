@@ -12,7 +12,7 @@ import (
 
 const (
 	NEWRELIC_INSIGHTS_KEY = "YOUR_KEY_HERE"
-	URL = "https://insights-collector.newrelic.com/v1/accounts/" //Your URL here
+	URL                   = "https://insights-collector.newrelic.com/v1/accounts/" //Your URL here
 )
 
 var (

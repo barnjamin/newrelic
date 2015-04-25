@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github.com/barnjamin/newrelic"
 	"log"
 	"math/rand"
-	"newrelic"
 	"os"
 	"time"
 )
