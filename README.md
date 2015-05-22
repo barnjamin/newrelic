@@ -7,6 +7,9 @@ Provides:
 - Library for pushing events to Newrelic Insights 
 
 
+When the Transaction is created it starts a new goroutine where all updates to that transaction and segments/subsegments are created to ensure its all done on the same thread. Not my favorite pattern here but it seems to get the job done. 
+
+
 
 Install
 -------
