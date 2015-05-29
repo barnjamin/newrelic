@@ -39,27 +39,26 @@ func NewTransaction(name string, log *log.Logger) *Transaction {
 		tChan <- t
 
 		if err != nil {
-			log.Printf("Failed to start transaction: %+v", err)
+			log.Printf("[ERROR] Failed to start transaction: %+v", err)
 			return
 		}
 
 		for {
 			select {
 			case efun := <-t.funcChan:
-				log.Debug("Calling an Update function")
 				err := efun()
 				if err != nil {
-					log.Errorf("Failed to call function: %+v", err)
+					log.Printf("[ERROR] Failed to call function: %+v", err)
 				}
+
 			case segp := <-t.segChan:
-				log.Debug("Calling segment function")
 				seg, err := segp.Func()
 				if err != nil {
-					log.Errorf("Failed to call segmenting function: %+v", err)
+					log.Printf("[ERROR] Failed to call segmenting function: %+v", err)
 				}
 				segp.Seg <- seg
 			case quit := <-t.endChan:
-				log.Debug("Quitting")
+				//log.Printf("[INFO] Transaction Quitting")
 				quit()
 				return
 			}
