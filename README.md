@@ -24,7 +24,7 @@ https://docs.newrelic.com/docs/agents/agent-sdk/installation-configuration/insta
 If you untar the contents to this directory under `newrelic_sdk` the C -L flag will not need to be updated in wrapper.go, otherwise change that path to whatever the new path should be
 
 
-Set the `$NEWRELIC_LICENSE_KEY` Environment variable for the SDK
+Set the `NEWRELIC_LICENSE_KEY` Environment variable for the SDK
 
 Set the `NEWRELIC_INSIGHTS_KEY` Environment variable for the event tracker
 
