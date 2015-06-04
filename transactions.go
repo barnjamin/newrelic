@@ -28,7 +28,6 @@ func NewTransaction(name string, log *log.Logger) *Transaction {
 	go func() {
 		id, err := StartTransaction()
 
-		//We dont want to return nil so create a transaction and the errors will just get logged
 		t := &Transaction{
 			id:       id,
 			funcChan: make(chan func() error),
@@ -36,6 +35,7 @@ func NewTransaction(name string, log *log.Logger) *Transaction {
 			segChan:  make(chan SegPromise),
 		}
 
+		//We dont want to return nil so create a transaction and the errors will just get logged
 		tChan <- t
 
 		if err != nil {
@@ -58,7 +58,6 @@ func NewTransaction(name string, log *log.Logger) *Transaction {
 				}
 				segp.Seg <- seg
 			case quit := <-t.endChan:
-				//log.Printf("[INFO] Transaction Quitting")
 				quit()
 				return
 			}

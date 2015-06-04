@@ -37,13 +37,12 @@ import "C"
 import (
 	"errors"
 	"fmt"
+	"os"
+	"runtime"
 	"unsafe"
 )
 
 const (
-	NEWRELIC_LICENSE_KEY = "YOUR_API_KEY"
-	LANGUAGE_VERSION     = "1.4" //TODO:: CHANGE IF NECESSARY
-
 	ROOT_SEGMENT = 0 //TODO:: can we import C constants?
 
 	SELECT = "select"
@@ -92,7 +91,7 @@ func DecodeError(res int) error {
 func Initialize(name string) {
 	C.register_default_handler()
 
-	ckey := C.CString(NEWRELIC_LICENSE_KEY)
+	ckey := C.CString(os.Getenv("NEWRELIC_API_KEY"))
 	defer C.free(unsafe.Pointer(ckey))
 
 	cname := C.CString(name)
@@ -101,7 +100,7 @@ func Initialize(name string) {
 	clang := C.CString("Go")
 	defer C.free(unsafe.Pointer(clang))
 
-	cver := C.CString(LANGUAGE_VERSION)
+	cver := C.CString(runtime.Version())
 	defer C.free(unsafe.Pointer(cver))
 
 	C.newrelic_init(ckey, cname, clang, cver)

@@ -11,8 +11,7 @@ import (
 )
 
 const (
-	NEWRELIC_INSIGHTS_KEY = "YOUR_KEY_HERE"
-	URL                   = "https://insights-collector.newrelic.com/v1/accounts/" //Your URL here
+	URL = "https://insights-collector.newrelic.com/v1/accounts/" //Your URL here
 )
 
 var (
@@ -78,7 +77,7 @@ func (e *EventTracker) send() error {
 		return err
 	}
 
-	r.Header.Add("X-Insert-Key", NEWRELIC_INSIGHTS_KEY)
+	r.Header.Add("X-Insert-Key", os.Getenv("NEWRELIC_INSIGHTS_KEY"))
 
 	//TODO::retry?
 	c := &http.Client{}
