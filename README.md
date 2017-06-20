@@ -1,3 +1,6 @@
+DO NOT USE.  Newrelic now has a Go agent that they mantain: https://github.com/newrelic/go-agent
+
+
 Go Newrelic Package
 ====================
 
